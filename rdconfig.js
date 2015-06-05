@@ -33,9 +33,9 @@ RDConfig.prototype.decrypt = function(value){
 };
 
 RDConfig.prototype.get = function(property, undefined){
-    var configValue = this.config.get(property).toString();
+    var configValue = this.config.get(property);
 
-    if (configValue.substr(0, this.cryptedFlag.length) === this.cryptedFlag) {
+    if (typeof configValue === 'string' && configValue.substr(0, this.cryptedFlag.length) === this.cryptedFlag) {
         configValue = configValue.substr(this.cryptedFlag.length);
 
         return this.decrypt(configValue);
