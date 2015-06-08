@@ -70,15 +70,15 @@ output:
 test1
 test2
 test3
-{ test1: 'test1', test2: 'test3' }
+{ test1: 'test1', test2: 'test2', test3: 'test3' }
 5
 true
-{ '0': 34, '1': 34, '2': 'test', '3': 'test3' }
+[ 34, 34, 'test', 'test3' ]
 { test1: 'test1',
   test2: 'test3',
   integer: 5,
   bool: true,
-  array: { '0': 34, '1': 34, '2': 'test', '3': 'test3' } }
+  array: [ 34, 34, 'test', 'test3' ] }
 ```
 
 this package is based on [lorenwest/node-config](https://github.com/lorenwest/node-config) package and depends on it

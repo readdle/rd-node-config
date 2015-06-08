@@ -33,12 +33,12 @@ RDConfig.prototype.decrypt = function(obj){
             if(obj.substr(0, this.cryptedFlag.length) === this.cryptedFlag) {
                 var secureValue = obj.substr(this.cryptedFlag.length);
                 var decipher = crypto.createDecipher(this.cryptMethod, this.cryptKey);
-                var obj = decipher.update(secureValue, 'hex', 'utf8');
+                obj = decipher.update(secureValue, 'hex', 'utf8');
                 obj += decipher.final('utf8');
             }
             break;
         case "object":
-            var decryptedObject = {};
+            var decryptedObject = Array.isArray(obj) ? [] : {};
             for(var key in obj){
                 var value = obj[key];
                 decryptedObject[key] = this.decrypt(value);
