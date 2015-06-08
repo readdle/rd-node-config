@@ -12,7 +12,10 @@ var RDConfig = function(){
     if (fs.existsSync(envFilePath)) {
         var envFileContent = fs.readFileSync(envFilePath).toString().split(/\r?\n/);
         process.env['NODE_ENV'] = envFileContent[0];
-        this.cryptKey = envFileContent[1];
+        if (typeof envFileContent[1] != 'undefined')
+            this.cryptKey = envFileContent[1];
+        else
+            this.cryptKey = '';
     }
 
     this.config = require('config');
