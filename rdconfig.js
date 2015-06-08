@@ -28,24 +28,26 @@ RDConfig.prototype.encrypt = function(value) {
 };
 
 RDConfig.prototype.decrypt = function(obj){
-    if(typeof obj === 'string' && obj.substr(0, this.cryptedFlag.length) === this.cryptedFlag){
-        var secureValue = obj.substr(this.cryptedFlag.length);
-        var decipher = crypto.createDecipher(this.cryptMethod, this.cryptKey);
-        var dec = decipher.update(secureValue, 'hex', 'utf8');
-        dec += decipher.final('utf8');
-        return dec;
-    }else if(typeof obj === 'string'){
-        return obj;
+    switch(typeof obj){
+        case "string":
+            if(obj.substr(0, this.cryptedFlag.length) === this.cryptedFlag) {
+                var secureValue = obj.substr(this.cryptedFlag.length);
+                var decipher = crypto.createDecipher(this.cryptMethod, this.cryptKey);
+                var obj = decipher.update(secureValue, 'hex', 'utf8');
+                obj += decipher.final('utf8');
+            }
+            break;
+        case "object":
+            var decryptedObject = {};
+            for(var key in obj){
+                var value = obj[key];
+                decryptedObject[key] = this.decrypt(value);
+            }
+            obj = decryptedObject;
+            break;
     }
 
-    var decryptedObject = {};
-
-    for(var key in obj){
-        var value = obj[key];
-        decryptedObject[key] = this.decrypt(value);
-    }
-
-    return decryptedObject;
+    return obj;
 };
 
 RDConfig.prototype.get = function(property){
