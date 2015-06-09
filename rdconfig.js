@@ -1,7 +1,7 @@
 var fs = require('fs');
 var crypto = require('crypto');
 
-var RDConfig = function(){
+var RDConfig = function(forceEnvName){
     var projectPath = process.cwd();
     var envFilePath = projectPath + '/.env';
 
@@ -11,6 +11,9 @@ var RDConfig = function(){
 
     if (fs.existsSync(envFilePath)) {
         var envFileContent = fs.readFileSync(envFilePath).toString().split(/\r?\n/);
+        if(typeof forceEnvName === "string"){
+            envFileContent[0] = forceEnvName
+        }
         process.env['NODE_ENV'] = envFileContent[0];
         if(envFileContent.length > 1) {
             this.cryptKey = envFileContent[1];
