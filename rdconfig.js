@@ -1,8 +1,11 @@
 var fs = require('fs');
 var crypto = require('crypto');
+var Path = require('path');
 
 var RDConfig = function(forceEnvName){
-    var projectPath = process.cwd();
+    var CONFIG_DIR = process.env.NODE_CONFIG_DIR || Path.join(process.cwd(), 'config');
+    var projectPath = Path.dirname(CONFIG_DIR);
+    
     var envFilePath = projectPath + '/.env';
 
     this.cryptKey = 'wrong_aes_key';
