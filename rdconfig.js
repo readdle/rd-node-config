@@ -1,7 +1,7 @@
 var fs = require('fs');
 var crypto = require('crypto');
 var Path = require('path');
-var myCnfReader = require('mycnfreader');
+var myCnfReader = require('./mycnfreader');
 
 var RDConfig = function(forceEnvName){
     var CONFIG_DIR = process.env.NODE_CONFIG_DIR || Path.join(process.cwd(), 'config');

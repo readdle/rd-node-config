@@ -1,7 +1,6 @@
 var fs = require('fs');
 
-function readMyCnf()
-{
+module.exports = function() {
     var db = { 'host': 'localhost', 'password': '' };
     var myCnfKeys = ['user', 'host', 'password', 'database'];
 
@@ -31,5 +30,3 @@ function readMyCnf()
 
     return db;
 }
-
-module.exports = readMyCnf;
