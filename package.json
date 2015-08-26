@@ -1,10 +1,17 @@
 {
   "name": "rdconfig",
-  "version": "1.2.3",
-  "description": "Module rdconfig - extension of package lorenwest/node-config, which allows you to read the value of the environment from a file and encrypt/decrypt the settings with specified key",
+  "version": "1.2.4",
+  
+  "description": "rdconfig - unified configuration for node apps, based on lorenwest/node-config",
+  
   "main": "rdconfig.js",
+  "bin": {
+    "rdconfig-crypter": "bin/rdconfig-crypter.js",
+    "rdconfig-nginx": "bin/rdconfig-nginx.js"
+  },
   "dependencies": {
-    "config": "~1.13.0"
+    "config": "~1.13.0",
+    "ejs": "^2.3.3"
   },
   "devDependencies": {},
   "scripts": {
