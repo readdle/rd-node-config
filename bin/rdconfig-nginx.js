@@ -3,19 +3,24 @@ var config = require('../rdconfig.js'),
        ejs = require('ejs');
 
 if (!config.has('nginx')) {
-    console.log("ERROR: unable to compile nginx.conf, can't load app config")
+    console.error("ERROR: unable to compile nginx.conf, can't load app config")
     process.exit(1);
 }
 
+var configDir = process.env.NODE_CONFIG_DIR || process.cwd() + "/config";
 
-var tmpl = fs.readFileSync("config/nginx.conf.ejs").toString();
-var nginx_path = "system/nginx.conf";
+if (!fs.existsSync(configDir + "/nginx/template.ejs")) {
+    console.error("ERROR: unable to compile nginx.conf, template.ejs not found in " + configDir + "/nginx");
+    process.exit(1);
+}
 
-fs.writeFile(nginx_path, ejs.render(tmpl, config.get('nginx')), function(err) {
-    if(err) {
-        return console.log(err);
+var tmpl = fs.readFileSync(configDir + "/nginx/template.ejs").toString();
+var nginxPath = configDir + "/nginx/_generated.conf";
+
+fs.writeFile(nginxPath, ejs.render(tmpl, config.get('nginx')), function (err) {
+    if (err) {
+        return console.error(err);
     }
-
-    console.log("updated nginx.conf in " + nginx_path);
+    console.log("updated nginx.conf in " + nginxPath);
 });
 
