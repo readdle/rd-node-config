@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 module.exports = function() {
-    var db = { 'host': 'localhost', 'password': '' };
+    var db = { 'host': '127.0.0.1', 'password': '' };
     var myCnfKeys = ['user', 'host', 'password', 'database'];
 
     if (!process.env.HOME) {
