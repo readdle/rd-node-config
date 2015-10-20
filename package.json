@@ -1,9 +1,9 @@
 {
   "name": "rdconfig",
-  "version": "1.2.4",
-  
+  "version": "1.2.5",
+
   "description": "rdconfig - unified configuration for node apps, based on lorenwest/node-config",
-  
+
   "main": "rdconfig.js",
   "bin": {
     "rdconfig-crypter": "bin/rdconfig-crypter.js",
