@@ -57,6 +57,16 @@ RDConfig.prototype.decrypt = function(obj){
     return obj;
 };
 
+RDConfig.prototype.db = function () {
+    var myCnf = this.getMyCnfParamsWithDatabase(this.get('db.database'));
+    var conf = this.get('db');
+
+    for(var key in myCnf) {
+        conf[key] = myCnf[key];
+    }
+    return conf;
+};
+
 RDConfig.prototype.getMyCnfParamsWithDatabase = function(database) {
     var myCnf = myCnfReader();
     
@@ -65,7 +75,7 @@ RDConfig.prototype.getMyCnfParamsWithDatabase = function(database) {
     }
         
     return myCnf;
-}
+};
 
 
 RDConfig.prototype.get = function(property){
