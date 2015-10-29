@@ -19,6 +19,8 @@ var RDConfig = function(forceEnvName){
         if(envFileContent.length > 1) {
             cryptKey = envFileContent[1];
         }
+
+        cryptKey = cryptKey.substring(0, 16);
     }
 
     this.config = require('config');
