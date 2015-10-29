@@ -8,7 +8,7 @@ var RDConfig = function(forceEnvName){
     
     var envFilePath = projectPath + '/.env';
 
-    var cryptKey = 'wrong_16_aes_key';
+    var cryptKey = '';
 
     if (fs.existsSync(envFilePath)) {
         var envFileContent = fs.readFileSync(envFilePath).toString().split(/\r?\n/);
@@ -21,6 +21,10 @@ var RDConfig = function(forceEnvName){
         }
 
         cryptKey = cryptKey.substring(0, 16);
+    }
+
+    if (cryptKey.length != 16) {
+        cryptKey = 'wrong_16_aes_key';
     }
 
     this.config = require('config');
