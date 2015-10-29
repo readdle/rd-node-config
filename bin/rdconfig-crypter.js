@@ -1,5 +1,5 @@
 var config = require('../rdconfig.js'),
-    args   = process.argv.slice(2);
+    args = process.argv.slice(2);
 
 var mode = args[0];
 var value = args[1];

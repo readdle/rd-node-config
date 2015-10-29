@@ -1,9 +1,9 @@
 var config = require('../rdconfig.js'),
-        fs = require('fs'),
-       ejs = require('ejs');
+    fs = require('fs'),
+    ejs = require('ejs');
 
 if (!config.has('nginx')) {
-    console.error("ERROR: unable to compile nginx.conf, can't load app config")
+    console.error("ERROR: unable to compile nginx.conf, can't load app config");
     process.exit(1);
 }
 
