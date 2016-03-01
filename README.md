@@ -81,4 +81,14 @@ true
   array: [ 34, 34, 'test', 'test3' ] }
 ```
 
+
+## Variable substitution
+
+Configuration values (strings that are requested using rdconfig get method) can contain environment variables. 
+
+`${VARIABLE}` syntax is supported. Extended shell-style features, such as `${VARIABLE-default}` and `${VARIABLE/foo/bar}`, are not supported.
+
+
+## Notes
+
 this package is based on [lorenwest/node-config](https://github.com/lorenwest/node-config) package and depends on it

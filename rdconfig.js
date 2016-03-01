@@ -31,20 +31,35 @@ var RDConfig = function(forceEnvName){
     this.rdcrypto = require('rdcrypto')(cryptKey)
 };
 
+RDConfig.prototype.envSubstitute = function(value) {
+
+    if (typeof value === 'string') {
+        return value.replace(/\${(.+?)}/g, function(match, name) {    
+            if (typeof process.env[name] === 'string') {
+                return process.env[name];
+            }
+            return match;
+        });
+    }
+    
+    return value;
+}
+
 RDConfig.prototype.encrypt = function(value) {
     return this.rdcrypto.encrypt(value);
 };
 
-RDConfig.prototype.decrypt = function(obj){
+
+RDConfig.prototype.transform = function(obj, stringCallback){
     switch(typeof obj){
         case "string":
-            return this.rdcrypto.decrypt(obj);
+            return stringCallback(obj);
             break;
         case "object":
             var decryptedObject = Array.isArray(obj) ? [] : {};
             for(var key in obj){
                 var value = obj[key];
-                decryptedObject[key] = this.decrypt(value);
+                decryptedObject[key] = this.transform(value, stringCallback);
             }
             obj = decryptedObject;
             break;
@@ -76,8 +91,11 @@ RDConfig.prototype.getMyCnfParamsWithDatabase = function(database) {
 
 RDConfig.prototype.get = function(property){
     var configValue = this.config.get(property);
+    configValue = this.envSubstitute(configValue);
 
-    return this.decrypt(configValue);
+    return this.transform(configValue, (function(value) {        
+        return this.envSubstitute(this.rdcrypto.decrypt(value));
+    }).bind(this));
 };
 
 RDConfig.prototype.has = function(property){
