@@ -34,7 +34,7 @@ var RDConfig = function(forceEnvName){
 RDConfig.prototype.envSubstitute = function(value) {
 
     if (typeof value === 'string') {
-        return value.replace(/\$ENV\((.+?)\)/g, function(match, name) {    
+        return value.replace(/\${(.+?)}/g, function(match, name) {    
             if (typeof process.env[name] === 'string') {
                 return process.env[name];
             }
