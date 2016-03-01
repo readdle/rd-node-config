@@ -32,15 +32,7 @@ var RDConfig = function(forceEnvName){
 };
 
 RDConfig.prototype.envSubstitute = function(value) {
-    function stringRegexpAllMatches(string, regexp) {
-        var matches, match;
-        while(match = inetRegexp.exec(stdout)) {
-            for(var i=0; i<match.length; i++) {
-                matches.push(match[i]);
-            }
-        }
-    }
-    
+
     if (typeof value === 'string') {
         return value.replace(/\$ENV\((.+?)\)/g, function(match, name) {    
             if (typeof process.env[name] === 'string') {
