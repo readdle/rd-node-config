@@ -93,9 +93,9 @@ RDConfig.prototype.get = function(property){
     var configValue = this.config.get(property);
     configValue = this.envSubstitute(configValue);
 
-    return this.transform(configValue, function(value) {        
+    return this.transform(configValue, (function(value) {        
         return this.envSubstitute(this.rdcrypto.decrypt(value));
-    });
+    }).bind(this));
 };
 
 RDConfig.prototype.has = function(property){
