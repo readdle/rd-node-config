@@ -31,6 +31,28 @@ var RDConfig = function(forceEnvName){
     this.rdcrypto = require('rdcrypto')(cryptKey)
 };
 
+RDConfig.prototype.envSubstitute = function(value) {
+    function stringRegexpAllMatches(string, regexp) {
+        var matches, match;
+        while(match = inetRegexp.exec(stdout)) {
+            for(var i=0; i<match.length; i++) {
+                matches.push(match[i]);
+            }
+        }
+    }
+    
+    if (typeof value === 'string') {
+        return value.replace(/\$ENV\((.+?)\)/g, function(match, name) {    
+            if (typeof process.env[name] === 'string') {
+                return process.env[name];
+            }
+            return match;
+        });
+    }
+    
+    return value;
+}
+
 RDConfig.prototype.encrypt = function(value) {
     return this.rdcrypto.encrypt(value);
 };
@@ -76,6 +98,7 @@ RDConfig.prototype.getMyCnfParamsWithDatabase = function(database) {
 
 RDConfig.prototype.get = function(property){
     var configValue = this.config.get(property);
+    configValue = this.envSubstitute(configValue);
 
     return this.decrypt(configValue);
 };

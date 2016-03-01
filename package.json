@@ -29,7 +29,7 @@
     "configuration",
     "conf"
   ],
-  "author": "Petrovskyi Anatolii (Readdle)",
+  "author": "Readdle Inc.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/readdle/rd-node-config/issues"
