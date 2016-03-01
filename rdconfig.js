@@ -59,7 +59,7 @@ RDConfig.prototype.transform = function(obj, stringCallback){
             var decryptedObject = Array.isArray(obj) ? [] : {};
             for(var key in obj){
                 var value = obj[key];
-                decryptedObject[key] = this.transform(value);
+                decryptedObject[key] = this.transform(value, stringCallback);
             }
             obj = decryptedObject;
             break;
