@@ -5,6 +5,7 @@
   "description": "rdconfig - unified configuration for node apps, based on lorenwest/node-config",
 
   "main": "rdconfig.js",
+  "types": "rdconfig.d.ts",
   "bin": {
     "rdconfig-crypter": "bin/rdconfig-crypter.js",
     "rdconfig-nginx": "bin/rdconfig-nginx.js"

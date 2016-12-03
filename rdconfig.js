@@ -43,7 +43,7 @@ RDConfig.prototype.envSubstitute = function(value) {
     }
     
     return value;
-}
+};
 
 RDConfig.prototype.encrypt = function(value) {
     return this.rdcrypto.encrypt(value);
