@@ -1,6 +1,6 @@
 {
   "name": "rdconfig",
-  "version": "v1.4",
+  "version": "1.4.0",
 
   "description": "rdconfig - unified configuration for node apps, based on lorenwest/node-config",
 
