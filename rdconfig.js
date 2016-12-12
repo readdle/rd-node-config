@@ -15,7 +15,13 @@ var RDConfig = function(forceEnvName){
         if(typeof forceEnvName === "string"){
             envFileContent[0] = forceEnvName
         }
-        process.env['NODE_ENV'] = envFileContent[0];
+        
+        var props = envFileContent[0].split(';');
+        process.env['NODE_ENV'] = props[0];
+        if(typeof props[1] === "string") {
+            process.env['NODE_APP_INSTANCE'] = props[1];
+        }
+        
         if(envFileContent.length > 1) {
             cryptKey = envFileContent[1];
         }
