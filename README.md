@@ -11,6 +11,17 @@ CRYPT_KEY
 
 all configs for each environment may be stored at {ENV_NAME}.json files
 
+## define instance specific connfig file
+.env
+
+```
+ENV_NAME;INSTANCE_NAME
+CRYPT_KEY
+```
+all configs for each instance may be stored at {ENV_NAME}-{INSTANCE_NAME}.json files
+
+Note: {ENV_NAME}.json config value has more priority that {ENV_NAME}-{INSTANCE_NAME}.json
+
 ## crypt your configs values
 
 config/test.json
