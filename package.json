@@ -1,9 +1,7 @@
 {
   "name": "rdconfig",
   "version": "1.4.0",
-
   "description": "rdconfig - unified configuration for node apps, based on lorenwest/node-config",
-
   "main": "rdconfig.js",
   "types": "rdconfig.d.ts",
   "bin": {
@@ -15,7 +13,9 @@
     "ejs": "^2.3.3",
     "rdcrypto": "0.*"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/config": "0.0.31"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
